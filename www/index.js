@@ -6,9 +6,9 @@ import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitContro
 var myCanvas = document.getElementById("3dCanvas");
 
 var scene = new THREE.Scene();
-scene.add(new THREE.AxesHelper());
+scene.background = new THREE.Color(0xb4c5e4)
 
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 100, window.innerWidth/window.innerHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer({antialias: true, canvas: myCanvas});
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -46,24 +46,35 @@ for(let i = 0; i < objects.length; i++){
 }
 
 // LIGHTENING
-const light = new THREE.DirectionalLight(0xffffffff, 0.5);
-light.position.x = -2;
-light.position.y = 0;
-light.position.z = 5;
+const light = new THREE.DirectionalLight(0xffffffff, 0.6);
+light.position.x = 0.2;
+light.position.y = 2;
+light.position.z = 6;
 scene.add(light);
 
+const ambientlight = new THREE.AmbientLight( 0x404040 ); 
+scene.add( ambientlight );
 
 // SET CAMERA POSITION
-camera.position.x = 2; //    |y
-camera.position.y = 2; //    |___x
-camera.position.z = 7; //  z/
+camera.position.x = 0.2; //    |y
+camera.position.y = 2;   //    |___x
+camera.position.z = 6;   //  z/
 
-const controls = new OrbitControls(camera, renderer.domElement);
+camera.rotation.set(0,0,0); // x,y,z
+
+// HELPER
+scene.add(new THREE.AxesHelper());
+scene.add(new THREE.PointLightHelper(light,1));
+scene.add(new THREE.CameraHelper(camera));
+
+// Controls
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 var animate = function () {
 requestAnimationFrame( animate );
 
-    controls.update();
+    //controls.update();
     renderer.render( scene, camera);
+    //console.log(camera.position.x,',',camera.position.y,',',camera.position.z);
 };
 animate();
