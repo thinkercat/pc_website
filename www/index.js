@@ -1,6 +1,7 @@
 import * as THREE from './three.js-master/build/three.module.js'
 import {OBJLoader} from './three.js-master/examples/jsm/loaders/OBJLoader.js'
-
+import {MTLLoader} from './three.js-master/examples/jsm/loaders/MTLLoader.js'
+import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitControls.js'
 // INIT SCENE
 var myCanvas = document.getElementById("3dCanvas");
 
@@ -14,79 +15,35 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild( renderer.domElement );
 
 // LOAD 3D OBJECTS
-const loader = new OBJLoader()
-loader.load('./assets/3d models/box.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/fan.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/motherboard.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/carte_graphique.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/Hardrive.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/ssd.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/processeur.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/powersupply.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
-loader.load('./assets/3d models/ram.obj', function(obj){
-    console.log(obj);
-    scene.add(obj);
-},function(xhr){
-    console.log(xhr.loaded/xhr.total * 100 + '% loaded')
-},function(error){
-    console.log('An error happen')
-})
+
+
+const objectPath = './assets/3d models/'
+const objects = ['box','carte_graphique','fan','Harddrive','motherboard','powersupply','processeur','ram','ssd'];
+const objectMeshes = []
+
+for(let i = 0; i < objects.length; i++){
+    const loader = new OBJLoader();
+    const mtlloader = new MTLLoader();
+    mtlloader.load(objectPath + objects[i] + '.mtl',function(material){
+        loader.setMaterials(material)
+        loader.load(objectPath + objects[i] + '.obj', function(obj){
+            console.log(obj);
+            scene.add(obj);
+                
+        },function(xhr){
+            console.log(objects[i]+' chargé à '+xhr.loaded/xhr.total * 100 + '%')
+        
+        },function(error){
+            console.log('Erreur de chargement du obj', error)
+        })
+    },function(xhr){
+        console.log('material '+objects[i]+' chargé à '+xhr.loaded/xhr.total * 100 + '%')
+    
+    },function(error){
+        console.log('Erreur de chargement du mtl', error)
+    })
+
+}
 
 // LIGHTENING
 const light = new THREE.DirectionalLight(0xffffffff, 0.5);
@@ -98,13 +55,15 @@ scene.add(light);
 
 // SET CAMERA POSITION
 camera.position.x = 2; //    |y
-camera.position.y = 1; //    |___x
+camera.position.y = 2; //    |___x
 camera.position.z = 7; //  z/
+
+const controls = new OrbitControls(camera, renderer.domElement);
 
 var animate = function () {
 requestAnimationFrame( animate );
 
-
+    controls.update();
     renderer.render( scene, camera);
 };
 animate();
