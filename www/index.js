@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger)
 import {OBJLoader} from './three.js-master/examples/jsm/loaders/OBJLoader.js';
 import {MTLLoader} from './three.js-master/examples/jsm/loaders/MTLLoader.js';
 import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitControls.js';
+import {loadObjects} from './loadObjects.js';
 
 // INIT SCENE
 var myCanvas = document.getElementById("3dCanvas");
@@ -19,34 +20,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild( renderer.domElement );
 
 // LOAD 3D OBJECTS
-const objectPath = './assets/3d models/'
-const objects = ['box','carte_graphique','fan','Harddrive','motherboard','powersupply','processeur','ram','ssd'];
-let objectMeshes = []
-
-for(let i = 0; i < objects.length; i++){
-    const loader = new OBJLoader();
-    const mtlloader = new MTLLoader();
-    mtlloader.load(objectPath + objects[i] + '.mtl',function(material){
-        loader.setMaterials(material)
-        loader.load(objectPath + objects[i] + '.obj', function(obj){
-            obj.name = objects[i];
-            objectMeshes.push(obj);
-            console.log(obj);
-            scene.add(obj);
-
-        },function(xhr){
-            console.log(objects[i]+' chargé à '+xhr.loaded/xhr.total * 100 + '%');
-        
-        },function(error){
-            console.log('Erreur de chargement du obj', error);
-        })
-    },function(xhr){
-        console.log('material '+objects[i]+' chargé à '+xhr.loaded/xhr.total * 100 + '%');
-    
-    },function(error){
-        console.log('Erreur de chargement du mtl', error);
-    });
-}
+const {box, carte_graphique} = await loadObjects();
+scene.add(box, carte_graphique)
 
 // LIGHTENING
 const light = new THREE.DirectionalLight(0xffffaa, 1);
@@ -91,22 +66,23 @@ tl.to(camera.rotation,{
     y:1,
     duration: 3
 })
-// console.log(objectMeshes[0])
-// tl.to(objectMeshes[0].position,{
-//     scrollTrigger:{
-//         trigger:"#trigger02",
-//         start: 'top top',
-//         scrub: true,
-//         markers: true},
-//     z: 6,
-//     duration: 3
-// })
-console.log(camera.position)
+tl.to(carte_graphique.position,{
+    scrollTrigger:{
+        trigger:"#trigger02",
+        start: 'top top',
+        scrub: true,
+        markers: true
+    },
+    z:50,
+    duration: 3
+})
+
 
 
 
 function animate() {
 requestAnimationFrame( animate );
+
     light.position.set(camera.position.x,camera.position.y,camera.position.z);
     light.rotation.set(camera.rotation.x,camera.rotation.y,camera.rotation.z);
     //controls.update();
