@@ -49,6 +49,21 @@ header nav .link a{
     margin-left: 20px;
     font-weight: bold;
 }
+.trigger{
+    position: relative;
+    grid-column: 1/6;
+    width: 100%;
+    height: 100%;
+    background: none;
+}
+.trigger#trigger01{grid-row: 1;}
+.trigger#trigger02{grid-row: 2;}
+.trigger#trigger03{grid-row: 3;}
+.trigger#trigger04{grid-row: 4;}
+.trigger#trigger05{grid-row: 5;}
+.trigger#trigger06{grid-row: 6;}
+.trigger#trigger07{grid-row: 7;}
+
 section{
     width: 100%;
     height: auto;
