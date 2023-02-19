@@ -71,10 +71,11 @@ tl.to(carte_graphique.position,{
         trigger:"#trigger02",
         start: 'top top',
         scrub: true,
-        markers: true
+        markers: true,
+        pin:true
     },
-    z:50,
-    duration: 3
+    z:5,
+    duration: 6
 })
 
 
