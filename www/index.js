@@ -1,11 +1,12 @@
 import * as THREE from './three.js-master/build/three.module.js';
+import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitControls.js';
+import {loadObjects} from './loadObjects.js';
+
 import {gsap} from './gsap-public/esm/index.js';
 import {ScrollTrigger} from './gsap-public/esm/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger)
-import {OBJLoader} from './three.js-master/examples/jsm/loaders/OBJLoader.js';
-import {MTLLoader} from './three.js-master/examples/jsm/loaders/MTLLoader.js';
-import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitControls.js';
-import {loadObjects} from './loadObjects.js';
+
+
 
 // INIT SCENE
 var myCanvas = document.getElementById("3dCanvas");
@@ -20,8 +21,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild( renderer.domElement );
 
 // LOAD 3D OBJECTS
-const {box, carte_graphique} = await loadObjects();
-scene.add(box, carte_graphique)
+const {box, carte_graphique, fan, Harddrive, motherboard, powersupply, processeur, ram, ssd} = await loadObjects();
+scene.add(box, carte_graphique, fan, Harddrive, motherboard, powersupply, processeur, ram, ssd);
 
 // LIGHTENING
 const light = new THREE.DirectionalLight(0xffffaa, 1);
@@ -36,9 +37,10 @@ scene.add( ambientlight );
 // SET CAMERA POSITION
 camera.position.x = 0.2; //    |y
 camera.position.y = 2;   //    |___x
-camera.position.z = 6;   //  z/
+camera.position.z = -6;   //  z/
 
-camera.rotation.set(0,0,0); // x,y,z
+camera.rotation.set(0,3.15,0);
+
 
 // HELPER
 scene.add(new THREE.AxesHelper());
@@ -53,41 +55,86 @@ let tl = gsap.timeline({
     scrollTrigger:{
         trigger: "#trigger01",
         start:'top top',
-        scrub: true
-    }
-})
-tl.to(camera.rotation,{
-    scrollTrigger:{
-        trigger:"#trigger02",
-        start: 'top top',
         scrub: true,
         markers: true
+    }
+})
+
+tl.to(camera.rotation,{
+    scrollTrigger:{
+        trigger:"#trigger01",
+        start: 'top top',
+        scrub: true,
     },
-    y:1,
+    y: 0,
     duration: 3
 })
-tl.to(carte_graphique.position,{
+tl.to(camera.position,{
+    scrollTrigger:{
+        trigger:"#trigger01",
+        start: 'top top',
+        scrub: true,
+        pin: true
+    },
+    z: 6,
+    y: 0,
+    duration: 3
+})
+tl.fromTo(camera.position,{z:6,y:0},{
     scrollTrigger:{
         trigger:"#trigger02",
         start: 'top top',
         scrub: true,
-        markers: true,
-        pin:true
+        pin: true
     },
-    z:5,
-    duration: 6
+    x: 6,
+    z: 8,
+    y: 2,
+    duration: 3
 })
-
-
-
+tl.to(powersupply.position,{
+    scrollTrigger:{
+        trigger: "#trigger02",
+        start: 'top top',
+        scrub:true
+    },
+    z: 5,
+    y: 2, 
+    x: 3,
+    duration:6
+})
+tl.fromTo(camera.position,{z:6,y:2,z:8},{
+    scrollTrigger:{
+        trigger:"#trigger03",
+        start: 'top top',
+        scrub: true,
+        pin: true
+    },
+    x: -6,
+    z: 8,
+    y: 2,
+    duration: 3
+})
+tl.from(powersupply.position,{
+    scrollTrigger:{
+        trigger: "#trigger03",
+        start: 'top top',
+        scrub:true
+    },
+    z: 5,
+    y: 2, 
+    x: 3,
+    duration:6
+})
 
 function animate() {
 requestAnimationFrame( animate );
 
     light.position.set(camera.position.x,camera.position.y,camera.position.z);
     light.rotation.set(camera.rotation.x,camera.rotation.y,camera.rotation.z);
-    //controls.update();
+
     renderer.render( scene, camera);
-    //console.log(camera.position.x,',',camera.position.y,',',camera.position.z);
+    // console.log('pos : ',camera.position.x,',',camera.position.y,',',camera.position.z);
+    // console.log('rot : ',camera.rotation.x,',',camera.rotation.y,',',camera.rotation.z);
 };
 animate();
