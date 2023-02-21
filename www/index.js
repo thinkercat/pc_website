@@ -1,3 +1,4 @@
+// IMPORTS
 import * as THREE from './three.js-master/build/three.module.js';
 import {OrbitControls} from './three.js-master/examples/jsm/controls/OrbitControls.js';
 import {loadObjects} from './loadObjects.js';
@@ -14,7 +15,7 @@ var myCanvas = document.getElementById("3dCanvas");
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xb4c5e4)
 
-var camera = new THREE.PerspectiveCamera( 100, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 100, window.innerWidth/window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer({antialias: true, canvas: myCanvas});
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -35,8 +36,8 @@ const ambientlight = new THREE.AmbientLight( 0xffffff, 0.5);
 scene.add( ambientlight );
 
 // SET CAMERA POSITION
-camera.position.x = 0.2; //    |y
-camera.position.y = 2;   //    |___x
+camera.position.x = 0.2;  //    |y
+camera.position.y = 2;    //    |___x
 camera.position.z = -6;   //  z/
 
 camera.rotation.set(0,3.15,0);
@@ -124,7 +125,49 @@ tl.from(powersupply.position,{
     z: 5,
     y: 2, 
     x: 3,
+    duration:3
+})
+tl.to(motherboard.position,{
+    scrollTrigger:{
+        trigger: "#trigger03",
+        start: 'top top',
+        scrub:true,
+    },
+    z: 5, 
+    x: -3,
     duration:6
+})
+tl.fromTo(camera.position,{z:-6,y:2,z:8},{
+    scrollTrigger:{
+        trigger:"#trigger04",
+        start: 'top top',
+        scrub: true,
+        pin: true
+    },
+    x: 6,
+    z: 8,
+    y: 2,
+    duration: 3
+})
+tl.from(motherboard.position,{
+    scrollTrigger:{
+        trigger: "#trigger04",
+        start: 'top top',
+        scrub:true
+    },
+    z: 5,
+    x: -3,
+    duration:3
+})
+tl.to(processeur.position,{
+    scrollTrigger:{
+        trigger: "#trigger04",
+        start: "top top",
+        scrub: true
+    },
+    x: 3,
+    y: 2,
+    z: 5
 })
 
 function animate() {
