@@ -22,7 +22,7 @@
 body{
     width: 100vw;
     height: 100vh;
-    background: url("./motherboard.jpeg") no-repeat;
+    background: var(--background-default);
     overflow: hidden;
 }
 header{
