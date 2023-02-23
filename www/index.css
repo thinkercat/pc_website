@@ -11,7 +11,23 @@
     --blur : blur(8px);
 
 }
-
+::-webkit-scrollbar {
+    width: 20px;
+} 
+::-webkit-scrollbar-track {
+    background: var(--background-default);
+    border: var(--border-glasse);
+    border-radius: 25px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--background-glasse);
+    border: var(--border-glasse);
+    border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255, .2);
+    cursor: help;
+}
 *{
     padding: 0;
     margin: 0;
@@ -19,7 +35,9 @@
     font-family: 'Roboto Mono',sans-serif;
     color: var(--color-default);
 }
-
+a{
+    text-decoration: none;
+}
 .loader{
     position: absolute;
     width: 100%;
@@ -124,30 +142,25 @@ section{
 .trigger#trigger06{grid-row: 6;}
 .trigger#trigger07{grid-row: 7;}
 
-.scene-intro{
-    position: absolute;
-    margin: 0 auto;
-
-    margin-top: 15vh;
-
-    width: 500px;
-    height: 500px;
-    /* border-radius: 50%; */
-    text-align: center;
-
-}
-section span.introduction{
-    width: auto;
-    height: 100px;
-
+section span.card{
     background-color: var(--background-glasse);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     border: var(--border-glasse);
     box-shadow: var(--card-shadow-glasse);
-    
+    padding: 50px;
+    text-align: center;
+}
+section span.card h3{
+    font-size: 3em;
+    font-weight: bold;
+}
+section span.introduction{
+    width: auto;
+    height: 100px;
+
     border-radius: 25px;
-    padding: 10px;
+    padding:  20px;
     margin: 0 auto;
     margin-top: 80vh;
     text-align: center;
@@ -156,13 +169,7 @@ section span.introduction{
 section span.composant_01{
     width: 50vw;
     height: 400px;
-
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
-    
+  
     border-radius: 80px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -175,12 +182,6 @@ section span.composant_02{
     width: 50vw;
     height: 400px;
 
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
-    
     border-radius: 80px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -192,12 +193,6 @@ section span.composant_02{
 section span.composant_03{
     width: 50vw;
     height: 400px;
-
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
 
     border-radius: 80px;
     border-top-right-radius: 0px;
@@ -211,12 +206,6 @@ section span.composant_04{
     width: 50vw;
     height: 400px;
 
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
-
     border-radius: 80px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -229,12 +218,6 @@ section span.composant_05{
     width: 50vw;
     height: 400px;
 
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
-
     border-radius: 80px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -246,12 +229,6 @@ section span.composant_05{
 section span.composant_06{
     width: 50vw;
     height: 400px;
-
-    background-color: var(--background-glasse);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: var(--border-glasse);
-    box-shadow: var(--card-shadow-glasse);
 
     border-radius: 80px;
     border-top-left-radius: 0px;
