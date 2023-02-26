@@ -69,6 +69,11 @@ const init = () => {
         displayQuestion(questionIndex);
     });
 
+    els.endBtn.addEventListener("click",()=>{
+        displayScreen('welcome');
+        questionIndex = 0;
+    });
+
 els.answersContainers.addEventListener('click', ((target))=>{
     if (target.tagName!=='LI'){
         return;
@@ -111,7 +116,7 @@ const displayQuestion =(index)=>{
     const questionEl= els.questionScreen.querySelector('h2');
     els.answersContainer = els.questionScreen.querySelector('ul');
 
-    const answerEls =currentQuestion.answers.map((answer)) =>{
+    const answerEls =currentQuestion.answers.map((answer)) => {
         const liEl = document.createElement('li');
         liEl.textContent = answer.title;
         liEl.setAttribute('data-result', answer.result);
