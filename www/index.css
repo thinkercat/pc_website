@@ -50,6 +50,10 @@ a{
     font-size: 25px;
 
 }
+
+.loader.loading-out{
+    visibility: hidden;
+}
 .loader .dot{
     animation: rebons .7s linear infinite;
 }
@@ -134,6 +138,27 @@ section{
     display: flex;
     justify-content: center;
 }
+.l span.card{
+    margin-top: 25vh;
+    margin-left: 50vw;
+}
+.l img{
+    margin-top: 20vh;
+    margin-right: 50vw;
+}
+.r span.card{
+    margin-top: 25vh;
+    margin-right: 50vw;
+}
+.r img{
+    margin-top: 20vh;
+    margin-left: 50vw;
+}
+.trigger img{
+    position: absolute;
+    width: auto;
+    height: 500px;
+}
 .trigger#trigger01{grid-row: 1;}
 .trigger#trigger02{grid-row: 2;}
 .trigger#trigger03{grid-row: 3;}
@@ -166,6 +191,9 @@ section span.introduction{
     text-align: center;
 
 }
+section .intro img{
+    margin-top: 13.5vh;
+}
 section span.composant_01{
     width: 50vw;
     height: 400px;
@@ -174,9 +202,7 @@ section span.composant_01{
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-right: none;
-    
-    margin-top: 25vh;
-    margin-left: 50vw;
+
 }
 section span.composant_02{
     width: 50vw;
@@ -199,8 +225,6 @@ section span.composant_03{
     border-bottom-right-radius: 0px;
     border-right: none;
 
-    margin-top: 25vh;
-    margin-left: 50vw;
 }
 section span.composant_04{
     width: 50vw;
@@ -211,8 +235,6 @@ section span.composant_04{
     border-bottom-left-radius: 0px;
     border-left: none;
 
-    margin-top: 25vh;
-    margin-right: 50vw;
 }
 section span.composant_05{
     width: 50vw;
@@ -223,8 +245,6 @@ section span.composant_05{
     border-bottom-right-radius: 0px;
     border-right: none;
 
-    margin-top: 25vh;
-    margin-left: 50vw;
 }
 section span.composant_06{
     width: 50vw;
@@ -234,7 +254,4 @@ section span.composant_06{
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-left: none;
-    
-    margin-top: 25vh;
-    margin-right: 50vw;
 }

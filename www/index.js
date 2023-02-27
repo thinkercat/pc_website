@@ -7,12 +7,6 @@ const loader = document.getElementById('loader')
 
 window.addEventListener('load', () =>{
    
-     if(sessionStorage.getItem('premierChargement') === null){
+   loader.classList.add('loading-out');
 
-        loader.classList.add('loading-out');    } else {
-        loader.style.display = "none"; 
-     }
-
-        
-     sessionStorage.setItem('premierChargement', 'done');
 })
