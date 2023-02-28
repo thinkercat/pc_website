@@ -20,7 +20,6 @@ let questionIndex = 0,
 
 const question = [{
         question: 'Un ordinateur peut fonctionner sans carte mere ?',
-        question: 'Un ordinateur peut fonctionner sans carte mere ?',
         answers: [{
             title: 'vrai',
             result: 'vrai'
@@ -31,34 +30,54 @@ const question = [{
         
 
     },
+    {
+        question: 'La carte mere est compatible avec tout les processeurs ?',
+        answers: [{
+            title: 'oui',
+            result: 'faux'
+        },{
+            title: 'non',
+            result: 'vrai'
+        }]
+            
+
     },
     {
-        question: 'La carte mere est consideree comme ?',
-        question: 'La carte mere est consideree comme ?',
+        question: 'Qu est ce que la RAM ?',
         answers: [{
-            title: 'le coeur de l ordinateur',
+            title: 'memoire vive',
             result: 'vrai'
         },{
-            title: 'le BIOS',
+            title: 'memoire morte',
             result: 'faux'
         }]
             
 
     },
-    },
     {
-        question: 'tout les processeurs sont compatibles avec chaque cartes mere?',
-        question: 'tout les processeurs sont compatibles avec chaque cartes mere?',
+        question: 'A quoi set le processeur ?',
         answers: [{
-            title: 'vrai',
+            title: 'caluler',
             result: 'vrai'
         },{
-            title: 'faux',
+            title: 'adapter des images',
             result: 'faux'
         }]
             
 
-    }
+    },
+    {
+        question: 'Quel est le nom du BIOS ?',
+        answers: [{
+            title: 'firmware',
+            result: 'vrai'
+        },{
+            title: 'software',
+            result: 'faux'
+        }]
+            
+
+    },
 ];
 
 
@@ -107,15 +126,6 @@ const init = () => {
         };
     });
 
-els.answersContainers.addEventListener('click', (target) => {
-    if (target.tagName!=='LI'){
-        return;
-    }
-    const result = target.getAttribute('data-result')
-    recordedAnswers.push(result);
-
-
-
 };
 
 
@@ -125,7 +135,7 @@ els.answersContainers.addEventListener('click', (target) => {
 
 
 const calculateScore = () => {
-    const result = recordedAnswers.sort((a,b) => {
+    const result = recordedAnswers.sort((a,b)=>{
         return recordedAnswers.filter(answer=>answer===a).length -
         recordedAnswers.filter(answer=>answer===b).length
     }).pop();
@@ -150,15 +160,15 @@ const displayQuestion =(index)=>{
     const currentQuestion= questions(index);
 
     const questionEl= els.questionScreen.querySelector('h2');
-    els.answersContainers = els.questionScreen.querySelector('ul');
+    els.answersContainer = els.questionScreen.querySelector('ul');
 
-    const answerEls =currentQuestion.answers.map((answer) => {
+    const answerEls =currentQuestion.answers.map((answer)) =>{
         const liEl = document.createElement('li');
         liEl.textContent = answer.title;
         liEl.setAttribute('data-result', answer.result);
-        return liEl;
+        return liEl
 
-    };);
+    }
 
     questionEl.textContent = currentQuestion.question;
     els.answersContainers.textContent = '';
