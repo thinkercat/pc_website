@@ -14,7 +14,7 @@ const els ={
 
 
 
-let questionIndex = 0,
+let questionIndex = 0
 
 // affichage des questions et affectation de valeur en fonction de la reponse
 
@@ -109,7 +109,7 @@ const init = () => {
     });
     
     
-    els.answersContainers.addEventListener('click', ((target))=>{
+    els.answersContainers.addEventListener('click', (target) => {
         if (target.tagName!=='LI'){
             return;
         };
@@ -160,15 +160,15 @@ const displayQuestion =(index)=>{
     const currentQuestion= questions(index);
 
     const questionEl= els.questionScreen.querySelector('h2');
-    els.answersContainer = els.questionScreen.querySelector('ul');
+    els.answersContainers = els.questionScreen.querySelector('ul');
 
-    const answerEls =currentQuestion.answers.map((answer)) =>{
+    const answerEls =currentQuestion.answers.map((answer) =>{ 
         const liEl = document.createElement('li');
         liEl.textContent = answer.title;
         liEl.setAttribute('data-result', answer.result);
         return liEl
 
-    }
+    });
 
     questionEl.textContent = currentQuestion.question;
     els.answersContainers.textContent = '';
