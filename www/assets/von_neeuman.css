@@ -104,4 +104,8 @@ header nav .link a:hover{
     box-shadow: var(--card-shadow-glasse);
     padding: 20px;
     text-align: center;
+    width: 50vw;
+}
+.text_container img{
+    width: 20vw;
 }
