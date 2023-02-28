@@ -14,7 +14,7 @@ let questionIndex = 0;
 
 
 const question = [{
-        question: 'Un ordinateur peut fonctionner sans carte mere ?'.
+        question: 'Un ordinateur peut fonctionner sans carte mere ?',
         answers: [{
             title: 'vrai',
             result: 'vrai'
@@ -24,9 +24,9 @@ const question = [{
         }]
         
 
-    };
+    },
     {
-        question: 'La carte mere est consideree comme ?'.
+        question: 'La carte mere est consideree comme ?',
         answers: [{
             title: 'le coeur de l ordinateur',
             result: 'vrai'
@@ -36,9 +36,9 @@ const question = [{
         }]
             
 
-    };
+    },
     {
-        question: 'tout les processeurs sont compatibles avec chaque cartes mere?'.
+        question: 'tout les processeurs sont compatibles avec chaque cartes mere?',
         answers: [{
             title: 'vrai',
             result: 'vrai'
@@ -48,7 +48,7 @@ const question = [{
         }]
             
 
-    };
+    }
 ];
 
 const recordedQuestions = [];
@@ -74,7 +74,7 @@ const init = () => {
         questionIndex = 0;
     });
 
-els.answersContainers.addEventListener('click', ((target))=>{
+els.answersContainers.addEventListener('click', (target) => {
     if (target.tagName!=='LI'){
         return;
     }
@@ -93,7 +93,7 @@ els.answersContainers.addEventListener('click', ((target))=>{
 
 
 const calculateScore = () => {
-    const result = recordedAnswers.sort((a,b)=>{
+    const result = recordedAnswers.sort((a,b) => {
         return recordedAnswers.filter(answer=>answer===a).length -
         recordedAnswers.filter(answer=>answer===b).length
     }).pop();
@@ -114,15 +114,15 @@ const displayQuestion =(index)=>{
     const currentQuestion= questions(index);
 
     const questionEl= els.questionScreen.querySelector('h2');
-    els.answersContainer = els.questionScreen.querySelector('ul');
+    els.answersContainers = els.questionScreen.querySelector('ul');
 
-    const answerEls =currentQuestion.answers.map((answer)) => {
+    const answerEls =currentQuestion.answers.map((answer) => {
         const liEl = document.createElement('li');
         liEl.textContent = answer.title;
         liEl.setAttribute('data-result', answer.result);
         return liEl
 
-    }
+    });
 
     questionEl.textContent = currentQuestion.question;
     els.answersContainers.textContent = '';
