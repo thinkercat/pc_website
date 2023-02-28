@@ -180,12 +180,12 @@ const displayQuestion =(index)=>{
 
 
 const displayScreen = (screenName) => {
-    els.welcomeScreen.style.display = 'none';
-    els.questionScreen.style.display = 'none';
-    els.endScreen.style.display = 'none';
+    els.welcomeScreen.style.visibility = 'hidden';
+    els.questionScreen.style.visibility = 'hidden';
+    els.endScreen.style.visibility = 'hidden';
 
-    els[screenName+'Screen'].display = 'flex';
-    screen.style.display = 'flex'
+    els[screenName+'Screen'].display = 'visible';
+    screen.style.visibility = 'visible'
 };
 
 

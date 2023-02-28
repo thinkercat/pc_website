@@ -1,40 +1,3 @@
-.welcom-screen,
-.question-screen,
-.end-screen {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-
-.welcom-screen{
-    flex-direction: column;
-
-}
-
-.question-screen,
-.end-screen{
-    display: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
 :root{
     --background-default : #0c1c1d;
@@ -47,7 +10,6 @@
     --blur : blur(8px);
 
 }
-
 *{
     padding: 0;
     margin: 0;
@@ -96,3 +58,33 @@ header nav .link a{
 header nav .link a:hover{
     text-shadow: 0 0 30px rgba(255,255,255, 1);
 }
+
+/* CODE */
+
+section{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: #0c1c1d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+button{
+    background: var(--background-glasse);
+    border: var(--border-glasse);
+    border-radius: 25px;
+    margin: 10px;
+    padding: 5px;
+    font-weight: bold;
+}button:hover{
+    background: rgba(0,0,0, .1);
+    cursor: pointer;
+}
+
+
+
+
