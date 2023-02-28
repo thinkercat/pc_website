@@ -1,193 +1,69 @@
+window.addEventListener('load', () => {
+
+    console.log('Initialisation du script...');
+
+    //Screen
+    let welcomeScreen = document.getElementById("welcome-screen-container");
+    let questionScreen = document.getElementById("question-screen-container");
+    let endScreen = document.getElementById("end-screen-container");
+
+    welcomeScreen.style.visibility = 'visible';
+
+    //Buttons
+    const welcomeBtn = document.getElementById("welcomeBtn");
+    const questionBtn = document.getElementById("questionBtn");
 
 
-
-const els ={
-    welcomeScreen: null,
-    questionScreen: null,
-    endScreen: null,
-    welcomeBtn: null,
-    answers: null,
-    endBtn: null,
-    answersContainers: null,
-};
-
-
-
-
-let questionIndex = 0
-
-// affichage des questions et affectation de valeur en fonction de la reponse
-
-const question = [{
-        question: 'Un ordinateur peut fonctionner sans carte mere ?',
-        answers: [{
-            title: 'vrai',
-            result: 'vrai'
-        },{
-            title: 'faux',
-            result: 'faux'
-        }]
-        
-
-    },
-    {
-        question: 'La carte mere est compatible avec tout les processeurs ?',
-        answers: [{
-            title: 'oui',
-            result: 'faux'
-        },{
-            title: 'non',
-            result: 'vrai'
-        }]
-            
-
-    },
-    {
-        question: 'Qu est ce que la RAM ?',
-        answers: [{
-            title: 'memoire vive',
-            result: 'vrai'
-        },{
-            title: 'memoire morte',
-            result: 'faux'
-        }]
-            
-
-    },
-    {
-        question: 'A quoi set le processeur ?',
-        answers: [{
-            title: 'caluler',
-            result: 'vrai'
-        },{
-            title: 'adapter des images',
-            result: 'faux'
-        }]
-            
-
-    },
-    {
-        question: 'Quel est le nom du BIOS ?',
-        answers: [{
-            title: 'firmware',
-            result: 'vrai'
-        },{
-            title: 'software',
-            result: 'faux'
-        }]
-            
-
-    },
-];
-
-
-
-
-// changement de page et de question
-
-
-const recordedQuestions = [];
-
-
-const init = () => {
-    console.log('init'),
-
-    els.welcomeScreen = document.querySelector(".welcome-screen"),
-    els.questionScreen = document.querySelector(".question-screen"),
-    els.endScreen = document.querySelector(".end-screen"),
-    els.welcomeBtn = els.welcomeScreen.querySelector('button'),
-    els.endBtn = els.endScreen.querySelector('button'),
-    els.answersContainers = els.questionScreen.querySelector('ul'),
-    els.welcomeBtn.addEventListener("click",()=>{
-        displayScreen('question');
-        displayQuestion(questionIndex);
-    }),
-
-    els.endBtn.addEventListener("click",()=>{
-        displayScreen('welcome'),
-        questionIndex = 0.
-    });
     
-    
-    els.answersContainers.addEventListener('click', (target) => {
-        if (target.tagName!=='LI'){
-            return;
-        };
-        const result = target.getAttribute('data-result')
-        recordedAnswers.push(result);
+    //Score
+    let scoreContainer = document.getElementById("score");
+    let score = 0 ;
 
-        questionIndex++;
 
-        if (questionIndex >= question.lenght) {
-            calculateScore(),
-            displayScreen('end');
-        } else {
-            displayQuestion(questionIndex);
+    // FUNCTIONS //
+
+    // changement d'affichage
+    const showScreen = (screen) =>{
+        console.log("change screen...")
+        document.querySelector('section').style.visibility = 'hidden';
+        screen.style.visibility = 'visible';
+    }
+
+    // calcul du score
+    const verifyAnswers = () =>{
+        //set questions
+        const questions = {
+            question01 :{
+                answer1: document.getElementById('question01_1'),
+                answer2: document.getElementById('question01_2'),
+                selectedAnswer: document.querySelector('input[name="question01"]:checked'),
+                goodAnswer : 'faux'
+            },
+            question02 :{
+                answer1: document.getElementById('question02_1'),
+                answer2: document.getElementById('question02_2'),
+                selectedAnswer: document.querySelector("input[name='question02']:checked"),
+                goodAnswer : 'vrai'
+            }
         };
+
+        for(i in questions){
+            if (questions[i].goodAnswer === questions[i].selectedAnswer.value){
+                score ++;
+            }
+            console.log(score)
+        }
+        let scoreString = score.toString();
+        scoreContainer.textContent = scoreString;
+    }
+
+    // Buttons
+    welcomeBtn.addEventListener("click", () => {
+        showScreen(questionScreen);
+    });
+    questionBtn.addEventListener("click", () => {
+        verifyAnswers();
+        showScreen(endScreen);
     });
 
-};
-
-
-// calcul du score moyen 
-
-
-
-
-const calculateScore = () => {
-    const result = recordedAnswers.sort((a,b)=>{
-        return recordedAnswers.filter(answer=>answer===a).length -
-        recordedAnswers.filter(answer=>answer===b).length
-    }).pop();
-
-    els.endScreen.querySelector('span').textContent=result;
-};
-
-
-
-
-
-
-
-
-// changement d'affichage de l'ecriture de la question et de la liste
-
-const displayQuestion =(index)=>{
-
-
-
-
-    const currentQuestion= questions(index);
-
-    const questionEl= els.questionScreen.querySelector('h2');
-    els.answersContainers = els.questionScreen.querySelector('ul');
-
-    const answerEls =currentQuestion.answers.map((answer) =>{ 
-        const liEl = document.createElement('li');
-        liEl.textContent = answer.title;
-        liEl.setAttribute('data-result', answer.result);
-        return liEl
-
-    });
-
-    questionEl.textContent = currentQuestion.question;
-    els.answersContainers.textContent = '';
-    els.answersContainers.append(...answerEls);
-};
-
-
-// fonction de changement d'etat de screen
-
-
-const displayScreen = (screenName) => {
-    els.welcomeScreen.style.visibility = 'hidden';
-    els.questionScreen.style.visibility = 'hidden';
-    els.endScreen.style.visibility = 'hidden';
-
-    els[screenName+'Screen'].display = 'visible';
-    screen.style.visibility = 'visible'
-};
-
-
-
-window.addEventListener('load',init);
+});

@@ -28,7 +28,7 @@ header{
     width: 100%;
     height: 100px;
 
-    background: var(--background-glasse);
+    background: var(--background-default);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     border-bottom: var(--border-glasse);
@@ -71,8 +71,11 @@ section{
     justify-content: center;
     align-items: center;
     text-align: center;
+    visibility: hidden;
 }
-
+.question{
+    margin-bottom: 50px;
+}
 button{
     background: var(--background-glasse);
     border: var(--border-glasse);

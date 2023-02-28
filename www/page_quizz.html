@@ -3,71 +3,65 @@
     <head>                                      
         <link src="quizz_css.css" href="quizz_css.css"/>
         <meta charset="utf-8">
-        <title>Pour voir si vous avez suivi...</title>
+        <title>Quizz</title>
         <link rel="stylesheet" href="./quizz_css.css">
     </head>
     <body>
+        <header>
+            <nav>
+                <div class="authors">
+                    Eliott Laure-Germain<br>
+                    Gaspard le leopard
+                </div>
+                <div class="link">
+                    <a href="./index.html">Acceuil</a>
+                    <a href="./page_quizz.html">Quizz</a>
+                </div>
+            </nav>
+        </header>
 
-        <section class="welcome-screen-container">
+        <section id="welcome-screen-container">
             <div class="welcome-screen">
                 <h1>Ceci est un test pour voir si vous avez bien retenu les informations</h1>
                 <h3>Passons au test</h3>
-                <button>
+                <button id="welcomeBtn">
                     Demarrer
                 </button>
             </div> 
         </section>
 
-        <section class="question-screen-container">
-            <div class="question-screen">
+        <section id="question-screen-container">
+
+            <div class="question">
                 <h2>Un ordinateur peut fonctionner sans carte mere ?</h2>
-                <ul>
-                    <li>vrai</li>
-                    <li>faux</li>
-                </ul>
+                <div class="questions-container">
+                    <input type="radio" name="question01" id="question01_1" value="vraix">
+                    <label for="question01_1">Oui</label>
+
+                    <input type="radio" name="question01" id="question01_2" value="faux">
+                    <label for="question01_2">Non</label>
+                </div>
             </div>
             
-            <div class="question-screen">
-                <h2>La carte mere est compatible avec tout les processeurs ?</h2>
-                <ul>
-                    <li>oui</li>
-                    <li>non</li>
-                </ul>
-            </div>
+            <div class="question">
+                <h2>Un ordinateur peut fonctionner sans carte mere ?</h2>
+                <div class="questions-container">
+                    <input type="radio" name="question02" id="question02_1" value="vrai">
+                    <label for="question02_1">Oui</label>
 
-            <div class="question-screen">
-                <h2>Qu est ce que la RAM ?</h2>
-                <ul>
-                    <li>memoire vive</li>
-                    <li>memoire morte</li>
-                </ul>
+                    <input type="radio" name="question02" id="question02_2" value="faux">
+                    <label for="question02_2">Non</label>
+                </div>
             </div>
+            
 
-            <div class="question-screen">
-                <h2>A quoi sert le processeur ?</h2>
-                <ul>
-                    <li>calculer</li>
-                    <li>adapter des images</li>
-                </ul>
-            </div>
+            <button id="questionBtn"> Vérifier </button>
 
-            <div class="question-screen">
-                <h2>Quel est le nom du BIOS ?</h2>
-                <ul>
-                    <li>firmware</li>
-                    <li>software</li>
-                </ul>
-            </div>
         </section>
-
-        <section class="end-screen-container">
-
-            <div class="end-screen">
-                <h1>Merci d'avoir fait le quizz</h1>
-                <p>Votre score : <span class="score">1</span>/10</p>
-                <button>recommencer</button>
-            </div>
-
+        
+        <section id="end-screen-container">
+            <h1>Merci d'avoir fait le quizz</h1>
+            <p>Votre score : <span class="score" id="score"></span>/10</p>
         </section>
 
         <script src="quizz_java.js"></script>
