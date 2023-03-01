@@ -175,6 +175,9 @@ section span.card{
     box-shadow: var(--card-shadow-glasse);
     padding: 50px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 section span.card h3{
     font-size: 3em;
