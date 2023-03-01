@@ -43,8 +43,26 @@ window.addEventListener('load', () => {
                 answer1: document.getElementById('question02_1'),
                 answer2: document.getElementById('question02_2'),
                 selectedAnswer: document.querySelector("input[name='question02']:checked"),
+                goodAnswer : 'faux'
+            },
+            question03 :{
+                answer1: document.getElementById('question03_1'),
+                answer2: document.getElementById('question03_2'),
+                selectedAnswer: document.querySelector('input[name="question03"]:checked'),
                 goodAnswer : 'vrai'
-            }
+            },
+            question04 :{
+                answer1: document.getElementById('question04_1'),
+                answer2: document.getElementById('question04_2'),
+                selectedAnswer: document.querySelector('input[name="question04"]:checked'),
+                goodAnswer : 'faux'
+            },
+            question05 :{
+                answer1: document.getElementById('question05_1'),
+                answer2: document.getElementById('question05_2'),
+                selectedAnswer: document.querySelector('input[name="question05"]:checked'),
+                goodAnswer : 'faux'
+            },
         };
 
         for(i in questions){
