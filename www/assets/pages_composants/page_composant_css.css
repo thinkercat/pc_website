@@ -79,6 +79,7 @@ header nav .link a:hover{
     -webkit-backdrop-filter: var(--blur);
     backdrop-filter: var(--blur);
     padding: 20px;
+    overflow: scroll;
 }
 .documentation p{
     color: #ffffff;
@@ -86,7 +87,7 @@ header nav .link a:hover{
     font-size: 1.5em;
 }
 .documentation img{
-    height: 300px;
+    width: 300px;
     border-radius: 25px;
     
 }
