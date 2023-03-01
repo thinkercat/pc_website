@@ -178,6 +178,7 @@ section span.card{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 section span.card h3{
     font-size: 3em;
