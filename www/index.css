@@ -165,7 +165,6 @@ section{
 .trigger#trigger04{grid-row: 4;}
 .trigger#trigger05{grid-row: 5;}
 .trigger#trigger06{grid-row: 6;}
-.trigger#trigger07{grid-row: 7;}
 
 section span.card{
     background-color: var(--background-glasse);
@@ -245,9 +244,9 @@ section span.composant_05{
     height: 400px;
 
     border-radius: 80px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-right: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: none;
 
 }
 section span.composant_06{
@@ -255,7 +254,7 @@ section span.composant_06{
     height: 400px;
 
     border-radius: 80px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-left: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: none;
 }
